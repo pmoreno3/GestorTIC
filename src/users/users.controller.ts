@@ -13,6 +13,7 @@ import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { FindUsersQueryDto } from './dto/find-users-query.dto';
+import { ParseResourceAssignmentDto } from './dto/parse-resource-assignment.dto';
 
 @Controller('users')
 export class UsersController {
@@ -25,6 +26,11 @@ export class UsersController {
       message: 'User created properly.',
       user,
     };
+  }
+
+  @Post('parse-resource-assignment')
+  async parseResourceAssignment(@Body() parseResourceAssignmentDto: ParseResourceAssignmentDto) {
+    return this.usersService.parseResourceAssignment(parseResourceAssignmentDto.command);
   }
 
   @Get()
